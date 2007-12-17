@@ -11,7 +11,6 @@ Group: Monitoring
 Source0: %{name}-%{version}-src.tar.gz
 Source1: %{name}-mdv
 Url: http://collectl.sourceforge.net
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(id -u -n)
 BuildArch: noarch
 
 %description
