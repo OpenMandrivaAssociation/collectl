@@ -5,7 +5,7 @@ Summary: A utility to collect various linux performance data
 Name: collectl
 Version: 2.2.8
 Packager: Bruno Cornec <bcornec@mandriva.org>
-Release: %mkrel 1
+Release: %mkrel 3
 License: GPL
 Group: Monitoring
 Source0: %{name}-%{version}-src.tar.gz
