@@ -3,12 +3,12 @@
 #
 Summary: A utility to collect various linux performance data
 Name: collectl
-Version: 2.2.8
+Version: 3.1.1
 Packager: Bruno Cornec <bcornec@mandriva.org>
-Release: %mkrel 3
+Release: %mkrel 1
 License: GPL
 Group: Monitoring
-Source0: %{name}-%{version}-src.tar.gz
+Source0: %{name}-%{version}.src.tar.gz
 Source1: %{name}-mdv
 Url: http://collectl.sourceforge.net
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(id -u -n)
@@ -35,8 +35,8 @@ mkdir -p  ${RPM_BUILD_ROOT}/var/log/%{name} ${RPM_BUILD_ROOT}%{_sbindir} ${RPM_B
 install -m 755  %{name}.pl ${RPM_BUILD_ROOT}%{_sbindir}/%{name}
 
 # Should be put elsewhere normaly
-install -m 755  formatit.ph ${RPM_BUILD_ROOT}/%{_sbindir}/formatit.ph
-install -m 444  RELEASE-%{name} FAQ-%{name}.html ${RPM_BUILD_ROOT}%{_docdir}/%{name}
+install -m 755  formatit.ph lexpr.ph sexpr.ph vmstat.ph ${RPM_BUILD_ROOT}/%{_sbindir}
+install -m 444  RELEASE-%{name} README GPL ARTISTIC COPYING ${RPM_BUILD_ROOT}%{_docdir}/%{name}
 install -m 755  %{SOURCE1} ${RPM_BUILD_ROOT}%{_sysconfdir}/init.d/%{name}
 install -m 644  %{name}.conf ${RPM_BUILD_ROOT}%{_sysconfdir}
 install -m 644  man1/%{name}*.1 ${RPM_BUILD_ROOT}%{_mandir}/man1/
@@ -46,7 +46,7 @@ echo "Lspci = /usr/bin/lspci" >> ${RPM_BUILD_ROOT}%{_sysconfdir}/%{name}.conf
 
 %files
 %defattr(-,root,root)
-%doc RELEASE-%{name} FAQ-%{name}.html
+%doc RELEASE-%{name} docs/*.html 
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 %dir /var/log/%{name}
 %{_sbindir}/*
