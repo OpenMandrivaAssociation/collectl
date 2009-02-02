@@ -3,7 +3,7 @@
 #
 Summary: A utility to collect various linux performance data
 Name: collectl
-Version: 3.1.1
+Version: 3.1.3
 Packager: Bruno Cornec <bcornec@mandriva.org>
 Release: %mkrel 1
 License: GPL
