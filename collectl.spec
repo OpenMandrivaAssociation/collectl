@@ -36,7 +36,6 @@ install -m 755  %{name}.pl ${RPM_BUILD_ROOT}%{_sbindir}/%{name}
 
 # Should be put elsewhere normaly
 install -m 755  formatit.ph lexpr.ph sexpr.ph vmstat.ph ${RPM_BUILD_ROOT}/%{_sbindir}
-install -m 444  RELEASE-%{name} README GPL ARTISTIC COPYING ${RPM_BUILD_ROOT}%{_docdir}/%{name}
 install -m 755  %{SOURCE1} ${RPM_BUILD_ROOT}%{_sysconfdir}/init.d/%{name}
 install -m 644  %{name}.conf ${RPM_BUILD_ROOT}%{_sysconfdir}
 install -m 644  man1/%{name}*.1 ${RPM_BUILD_ROOT}%{_mandir}/man1/
@@ -46,7 +45,7 @@ echo "Lspci = /usr/bin/lspci" >> ${RPM_BUILD_ROOT}%{_sysconfdir}/%{name}.conf
 
 %files
 %defattr(-,root,root)
-%doc RELEASE-%{name} docs/*.html 
+%doc RELEASE-%{name} docs/*.html README GPL ARTISTIC COPYING
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 %dir /var/log/%{name}
 %{_sbindir}/*
