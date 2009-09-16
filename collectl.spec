@@ -1,16 +1,12 @@
-#
-# $Id$
-#
 Summary: A utility to collect various linux performance data
 Name: collectl
-Version: 3.1.3
-Packager: Bruno Cornec <bcornec@mandriva.org>
-Release: %mkrel 2
-License: GPL
+Version: 3.3.5
+Release: %mkrel 1
+License: GPL+ or Artistic
 Group: Monitoring
-Source0: %{name}-%{version}.src.tar.gz
-Source1: %{name}-mdv
-Url: http://collectl.sourceforge.net
+Source0: http://prdownloads.sourceforge.net/%name/%{name}-%{version}.src.tar.gz
+Source1:collectl-mdv
+Url: http://collectl.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(id -u -n)
 BuildArch: noarch
 
@@ -18,7 +14,7 @@ BuildArch: noarch
 A utility to collect linux performance data
 
 %prep
-%setup -n %{name}-%{version}
+%setup -q
 
 %build
 
@@ -47,6 +43,7 @@ echo "Lspci = /usr/bin/lspci" >> ${RPM_BUILD_ROOT}%{_sysconfdir}/%{name}.conf
 %defattr(-,root,root)
 %doc RELEASE-%{name} docs/*.html README GPL ARTISTIC COPYING
 %config(noreplace) %{_sysconfdir}/%{name}.conf
+#gw AFAIK logrotate is not needed as collectl does that itself
 %dir /var/log/%{name}
 %{_sbindir}/*
 %{_mandir}/man1/*
