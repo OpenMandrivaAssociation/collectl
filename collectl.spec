@@ -1,6 +1,6 @@
 Summary: A utility to collect various linux performance data
 Name: collectl
-Version: 3.3.5
+Version: 3.3.6
 Release: %mkrel 1
 License: GPL+ or Artistic
 Group: Monitoring
