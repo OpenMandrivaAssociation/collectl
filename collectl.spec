@@ -1,11 +1,12 @@
 Summary: A utility to collect various linux performance data
 Name: collectl
-Version: 3.3.6
+Version: 3.4.0
 Release: %mkrel 1
 License: GPL+ or Artistic
 Group: Monitoring
 Source0: http://prdownloads.sourceforge.net/%name/%{name}-%{version}.src.tar.gz
 Source1:collectl-mdv
+patch0: collectl-3.4.0-install.patch
 Url: http://collectl.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(id -u -n)
 BuildArch: noarch
@@ -15,6 +16,7 @@ A utility to collect linux performance data
 
 %prep
 %setup -q
+%patch0
 
 %build
 
@@ -23,18 +25,8 @@ A utility to collect linux performance data
 
 %install
 %{__rm}  -rf $RPM_BUILD_ROOT
-
-# create required directories
-mkdir -p  ${RPM_BUILD_ROOT}/var/log/%{name} ${RPM_BUILD_ROOT}%{_sbindir} ${RPM_BUILD_ROOT}%{_docdir}/%{name} ${RPM_BUILD_ROOT}%{_sysconfdir}/init.d/ ${RPM_BUILD_ROOT}%{_mandir}/man1/
-
-# install the files, setting the mode
-install -m 755  %{name}.pl ${RPM_BUILD_ROOT}%{_sbindir}/%{name}
-
-# Should be put elsewhere normaly
-install -m 755  formatit.ph lexpr.ph sexpr.ph vmstat.ph ${RPM_BUILD_ROOT}/%{_sbindir}
-install -m 755  %{SOURCE1} ${RPM_BUILD_ROOT}%{_sysconfdir}/init.d/%{name}
-install -m 644  %{name}.conf ${RPM_BUILD_ROOT}%{_sysconfdir}
-install -m 644  man1/%{name}*.1 ${RPM_BUILD_ROOT}%{_mandir}/man1/
+export PREFIX=$RPM_BUILD_ROOT
+./INSTALL
 
 # lspci is under /usr/bin
 echo "Lspci = /usr/bin/lspci" >> ${RPM_BUILD_ROOT}%{_sysconfdir}/%{name}.conf
@@ -48,6 +40,7 @@ echo "Lspci = /usr/bin/lspci" >> ${RPM_BUILD_ROOT}%{_sysconfdir}/%{name}.conf
 %{_sbindir}/*
 %{_mandir}/man1/*
 %{_sysconfdir}/init.d/%{name}
+%{_datadir}/%{name}
 
 %preun
 # If collectl is running, stop it before removing.
