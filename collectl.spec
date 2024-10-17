@@ -7,7 +7,7 @@ Group: Monitoring
 Source0: http://prdownloads.sourceforge.net/%name/%{name}-%{version}.src.tar.gz
 Source1:collectl-mdv
 patch0: collectl-3.4.0-install.patch
-Url: http://collectl.sourceforge.net/
+Url: https://collectl.sourceforge.net/
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(id -u -n)
 BuildArch: noarch
 
